@@ -1,0 +1,131 @@
+#include <stdlib.h>
+#include "dberror.h"
+#include "expr.h"
+#include "record_mgr.h"
+#include "tables.h"
+#include "test_helper.h"
+
+
+void
+CreateTableAndInsert (void)
+{
+   RM_TableData *table = (RM_TableData *) malloc(sizeof(RM_TableData));
+   // TestRecord inserts[] = {
+         // {1, "aaaa", 3},
+         // {2, "bbbb", 2},
+         
+   // };
+   
+
+   
+}
+
+Schema *
+InterfaceSchema (void)
+{
+   Schema *result;
+   char *names[] = { "Item Count", "Item Title", "Quantity" };
+   DataType dt[] = { DT_INT, DT_STRING, DT_INT };
+   int sizes[] = { 0, 25, 3 };
+   int keys[] = {0};
+   int i;
+   char **cpNames = (char **) malloc(sizeof(char*) * 3);
+   DataType *cpDt = (DataType *) malloc(sizeof(DataType) * 3);
+   int *cpSizes = (int *) malloc(sizeof(int) * 3);
+   int *cpKeys = (int *) malloc(sizeof(int));
+
+   for(i = 0; i < 3; i++)
+   {
+      cpNames[i] = (char *) malloc(2);
+      strcpy(cpNames[i], names[i]);
+   }
+   memcpy(cpDt, dt, sizeof(DataType) * 3);
+   memcpy(cpSizes, sizes, sizeof(int) * 3);
+   memcpy(cpKeys, keys, sizeof(int));
+
+   result = createSchema(3, cpNames, cpDt, cpSizes, 1, cpKeys);
+
+   return result;
+}
+
+
+int main()
+{
+
+    char buffer[32];
+    char str[20];
+    char *b = buffer;
+    char *s = str;
+    size_t bufsize = 32;
+    size_t strsize = 50;
+    size_t choice;
+    size_t tableName;
+   
+   
+
+   printf("              **************************\n");
+   printf("              *                        *\n");
+   printf("              *     Record Manager     *\n");
+   printf("              *          is            *\n");
+   printf("              *      initialized       *\n");
+   printf("              *                        *\n");
+   printf("              **************************\n\n\n\n");
+
+
+   printf("  Hello there!\n\n");
+   printf("  Inspiring Quote of the Day:\n\n");
+   printf("  Database schemas are notoriously volatile,\n");
+   printf("  extremely concrete, and highly depended on.  This is\n");
+   printf("  one reason why the interface between OO applications\n");
+   printf("  and databases is so difficult to manage, and why \n");
+   printf("  schema updates are generally painful.\n");
+   printf("  \n");
+   printf("     ― Robert C. Martin, Clean Architecture\n");
+   printf("\n");
+   printf("\n");
+   printf("  Let's add some values to a table!\n");
+   printf("  Thank you for creating a table\n");
+   printf("\n");
+   printf("\n");
+
+
+   printf("     +-------------------------------------------------+\n");
+   printf("     |                                                 |\n");
+   printf("     |                      Menu                       |\n");
+   printf("     |                                                 |\n");
+   printf("     |   1) Create a table                             |\n");
+   printf("     |                                                 |\n");
+   printf("     |   2) Open a Table                               |\n");
+   printf("     |                                                 |\n");
+   printf("     |   3) Program 3                                  |\n");
+   printf("     |                                                 |\n");
+   printf("     +-------------------------------------------------+\n");
+
+   /*getting input*/
+   // scanf("%d", &choice);
+ 
+   // system("CLS");
+
+   choice = getline(&b,&bufsize,stdin);
+   // printf("%zu characters were read.\n",choice);
+ 
+   /*Finding which choice was asked for (my style of using brackets may be different than yours*/
+   if (choice = 1)
+   {
+      printf("You chose create a table!\n");
+      printf("What would you like to name the table?\n");
+      tableName = getline(&s,&strsize,stdin);
+      // printf("Thank you, your table is called: '%s' \n", tableName );
+   }
+   else if (choice==2)
+   {
+      printf("You chose program 2!\n");
+   }
+   else if (choice==3)
+   {
+      printf("You chose program 3!\n");
+   }
+ 
+   system("PAUSE");
+   return 0;
+}
